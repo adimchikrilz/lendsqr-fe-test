@@ -56,7 +56,8 @@ const Sidebar: React.FC<SidebarProps> = ({ showExtraItems = false }) => {
   return (
     <>
       {/* Mobile Menu Toggle */}
-      <button className="mobile-menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+      <button className={`mobile-menu-toggle ${isOpen ? 'open' : ''}`}
+  onClick={() => setIsOpen(!isOpen)}>
         <span></span>
         <span></span>
         <span></span>

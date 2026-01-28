@@ -19,6 +19,7 @@ interface User {
 const Users: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     // Fetch users from mock API
@@ -76,6 +77,10 @@ const Users: React.FC = () => {
     }));
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   // Calculate statistics
   const totalUsers = users.length;
   const activeUsers = users.filter((user) => user.status === 'Active').length;
@@ -84,9 +89,12 @@ const Users: React.FC = () => {
 
   return (
     <div className="users-page">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="users-main">
         <Header />
+        
+        
+
         <div className="users-content">
           <h1 className="page-title">Users</h1>
 
@@ -109,7 +117,6 @@ const Users: React.FC = () => {
               title="USERS WITH LOANS"
               value={usersWithLoans.toLocaleString()}
               iconBg="#F55F441A"
-              
             />
             <StatsCard
               icon="/assets/icons/coins.png"
