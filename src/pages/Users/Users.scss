@@ -44,18 +44,24 @@
   font-weight: 500;
   color: #213f7d;
   margin-bottom: 40px;
-  margin-top: 0;
+  margin-top: 80px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-top: 500px; // Space for mobile menu button in content area
+  }
 
   @media (max-width: 768px) {
     font-size: 20px;
     margin-bottom: 30px;
-    margin-top: 50px; // Space for mobile menu button in content area
+    margin-top: 500px; // Space for mobile menu button in content area
   }
 
   @media (max-width: 480px) {
     font-size: 18px;
     margin-bottom: 24px;
-    margin-top: 50px;
+    margin-top: 500px;
   }
 }
 
