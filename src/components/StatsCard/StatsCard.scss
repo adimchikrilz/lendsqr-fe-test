@@ -1,0 +1,45 @@
+// StatsCard.scss - Statistics card styles
+
+.stats-card {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 30px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.stats-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.stats-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #545f7d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.stats-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #213f7d;
+  margin: 0;
+}

@@ -1,0 +1,352 @@
+// Login.scss - Pixel-perfect styling for Lendsqr Login Page
+
+// Variables
+$primary-color: #39cdcc;
+$text-primary: #213f7d;
+$text-secondary: #545f7d;
+$border-color: #545f7d4d;
+$white: #ffffff;
+$error-color: #e4033b;
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+}
+
+// Reset and Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  min-height: 100vh;
+  background-color: $white;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+// Loading spinner
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Disable state for inputs
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.password-toggle:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+// Logo
+.login-logo {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  z-index: 10;
+  margin-left: 100px;
+  
+
+  @include respond-to(tablet) {
+    top: 50px;
+    left: 50px;
+  }
+
+  @include respond-to(mobile) {
+    top: 30px;
+    left: 30px;
+  }
+
+  .logo {
+    height: 36px;
+    width: auto;
+
+    @include respond-to(mobile) {
+      height: 28px;
+    }
+  }
+}
+
+// Main Content Layout
+.login-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0 100px;
+  gap: 100px;
+
+  @include respond-to(tablet) {
+    padding: 150px 50px 50px;
+    gap: 50px;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    padding: 120px 20px 50px;
+    gap: 40px;
+  }
+}
+
+// Left Side - Illustration
+.login-illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin-top: 100px;
+  margin-left: 50px;
+
+  @include respond-to(mobile) {
+    max-width: 100%;
+    width: 100%;
+    display: none; // Hide illustration on mobile for better UX
+  }
+
+  .illustration-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+  }
+}
+
+// Right Side - Login Form
+.login-form-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 447px;
+  margin-right: 100px;
+
+  @include respond-to(mobile) {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.login-form-container {
+  width: 100%;
+}
+
+.login-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 10px;
+  letter-spacing: -0.04em;
+
+  @include respond-to(mobile) {
+    font-size: 32px;
+  }
+}
+
+.login-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: $text-secondary;
+  margin-bottom: 60px;
+
+  @include respond-to(mobile) {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+}
+
+// Form Styles
+.login-form {
+  width: 100%;
+
+  .form-group {
+    margin-bottom: 24px;
+    position: relative;
+
+    &.password-group {
+      position: relative;
+    }
+  }
+
+  .form-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-secondary;
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+    &::placeholder {
+      color: #545f7d99;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $primary-color;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .forgot-password {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: $primary-color;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .login-button {
+    width: 100%;
+    height: 48px;
+    background-color: $primary-color;
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    box-shadow: 0px 4px 8px rgba(57, 205, 204, 0.2);
+
+    &:hover {
+      background-color: darken($primary-color, 5%);
+      box-shadow: 0px 6px 12px rgba(57, 205, 204, 0.3);
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0px 2px 4px rgba(57, 205, 204, 0.2);
+    }
+  }
+}
+
+// Floating Decorations
+.floating-decorations {
+  pointer-events: none;
+
+  .decoration {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: $white;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+
+    @include respond-to(mobile) {
+      display: none; // Hide decorations on mobile
+    }
+  }
+
+  .decoration-1 {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #df18a8 0%, #e91e63 100%);
+    font-size: 24px;
+    top: 15%;
+    left: 45%;
+    animation-delay: 0s;
+  }
+
+  .decoration-2 {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    font-size: 22px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .decoration-3 {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #df18a8 0%, #e91e63 100%);
+    font-size: 14px;
+    border-radius: 20px;
+    top: 25%;
+    right: 8%;
+    animation-delay: 4s;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// Additional responsive adjustments
+@include respond-to(mobile) {
+  .login-content {
+    justify-content: flex-start;
+  }
+
+  .login-form-wrapper {
+    margin-top: 20px;
+  }
+}
