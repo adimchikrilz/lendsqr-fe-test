@@ -1,4 +1,4 @@
-// Login.scss - Pixel-perfect styling for Lendsqr Login Page
+// Login.scss - Pixel-perfect styling for Lendsqr Login Page with iOS zoom fix
 
 // Variables
 $primary-color: #39cdcc;
@@ -210,6 +210,11 @@ $error-color: #e4033b;
     transition: all 0.3s ease;
     font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 
+    // CRITICAL: Prevent iOS zoom on focus - must be 16px or larger
+    @include respond-to(mobile) {
+      font-size: 16px;
+    }
+
     &::placeholder {
       color: #545f7d99;
     }
@@ -350,6 +355,5 @@ $error-color: #e4033b;
     margin-top: -100px;
     margin-right: -10px;
     overflow-y: hidden;
-
   }
 }
