@@ -51,21 +51,8 @@ const UserDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState('general');
   const [userData, setUserData] = useState<UserData | null>(null);
 
-  useEffect(() => {
-    // Try to get user data from localStorage first
-    const storedUser = localStorage.getItem(`user_${id}`);
-    
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      setUserData(enrichUserData(user));
-    } else {
-      // If not in localStorage, generate mock data
-      setUserData(generateMockUserDetails(id || ''));
-    }
-  }, [id]);
-
-  // Enrich user data with additional mock details
-  const enrichUserData = (user: any): UserData => {
+  // Enrich user data with additional mock details - MOVED BEFORE useEffect
+  const enrichUserData = (user: UserData): UserData => {
     return {
       ...user,
       accountBalance: '200,000.00',
@@ -101,7 +88,7 @@ const UserDetails: React.FC = () => {
     };
   };
 
-  // Generate mock user details if not found
+  // Generate mock user details if not found - MOVED BEFORE useEffect
   const generateMockUserDetails = (userId: string): UserData => {
     return {
       id: userId,
@@ -143,6 +130,19 @@ const UserDetails: React.FC = () => {
       },
     };
   };
+
+  useEffect(() => {
+    // Try to get user data from localStorage first
+    const storedUser = localStorage.getItem(`user_${id}`);
+    
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserData(enrichUserData(user));
+    } else {
+      // If not in localStorage, generate mock data
+      setUserData(generateMockUserDetails(id || ''));
+    }
+  }, [id]);
 
   const handleBackToUsers = () => {
     navigate('/users');
@@ -236,10 +236,9 @@ const UserDetails: React.FC = () => {
 
               <div className="bank-info-section">
                 <h3>₦{userData.accountBalance}</h3>
-                <p>{`${userData.accountNumber}/${userData.bank}`}</p>
+                <p>{userData.accountNumber}/{userData.bank}</p>
               </div>
             </div>
-
             {/* Tabs */}
             <div className="profile-tabs">
               <button
@@ -280,8 +279,7 @@ const UserDetails: React.FC = () => {
               </button>
             </div>
           </div>
-
-          {/* Details Content - SEPARATE CONTAINER */}
+          {/* Rest of your JSX remains the same */}
           {activeTab === 'general' && (
             <div className="details-content">
               {/* Personal Information */}
@@ -357,7 +355,6 @@ const UserDetails: React.FC = () => {
                   </div>
                 </div>
               </div>
-
               {/* Socials */}
               <div className="info-section">
                 <h3 className="section-title">Socials</h3>
@@ -376,7 +373,6 @@ const UserDetails: React.FC = () => {
                   </div>
                 </div>
               </div>
-
               {/* Guarantor */}
               <div className="info-section">
                 <h3 className="section-title">Guarantor</h3>
@@ -423,7 +419,6 @@ const UserDetails: React.FC = () => {
               </div>
             </div>
           )}
-
           {/* Other tabs content (placeholder) */}
           {activeTab !== 'general' && (
             <div className="details-content">
